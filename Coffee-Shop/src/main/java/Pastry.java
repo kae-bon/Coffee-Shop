@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 
 public class Pastry extends MenuItem {
     public Pastry(String itemName, String itemPrice) {
-        super(itemName, itemPrice);
+        super(itemName, itemPrice, "Pastry");
     }
 
     public String getItemType() {
@@ -11,12 +11,7 @@ public class Pastry extends MenuItem {
 
     @Override
     public String toString() {
-        return String.format("%s | %.2f", this.getItemName(), this.getPrice());
-    }
-
-    @Override
-    public BigDecimal getPrice() {
-        return this.getItemPrice();
+        return String.format("%-22s | %.2f", this.getItemName(), this.getItemPrice());
     }
 
 }

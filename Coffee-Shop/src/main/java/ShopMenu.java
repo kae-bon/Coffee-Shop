@@ -1,67 +1,31 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.*;
 
 public class ShopMenu {
+    // WHAT THIS CLASS IS DOING: Creating a menu
+    private Inventory shopInventory = new Inventory();
 
-    List<MenuItem> menuItems = new ArrayList<>();
-
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
+    public String getShopMenu() {
+        return createShopMenu(shopInventory.getInventoryItems());
     }
 
-    public Map<MenuItem, String> itemsByType = new HashMap<>();
+    private String createShopMenu(List<MenuItem> menuItems) {
+        String coffeeMenu = "\n##### COFFEE #####\n";
+        String espressoMenu = "\n##### ESPRESSO #####\n";
+        String pastryMenu = "\n##### PASTRIES #####\n";
 
-    public String welcomeToTheShop() {
-        return "##### WELCOME #####\n##### TO KAE'S COFFEESHOP! #####\n";
-    }
-
-    public void createMenuList() {
-        File menuFile = new File("C:\\Users\\Student\\workspace\\Coffee-Shop\\Coffee-Shop\\CoffeeShopMenu.txt");
-        try (Scanner fileReader = new Scanner(menuFile)) {
-            while (fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
-                String[] itemInfo = line.split(",");
-                MenuItem item = createItem(itemInfo);
-                menuItems.add(item);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Menu file not found!");
-        }
-    }
-    
-//    public String createDrinkMenu(List<MenuItem> menuItems) {
-//        String CoffeeMenu = "##### COFFEE #####";
-//        String espressoMenu = "##### ESPRESSO #####";
-//        for (int i = 0; i < menuItems.size(); i++) {
-//            String itemName;
-//            String itemSize;
-//            String itemCost;
-//        }
-//        return espressoMenu;
-//    }
-
-
-    public String formatMenu(String name, String size, String price) {
-        return String.format("\n %10s | %10s | %4d", name, size, price);
-    }
-
-    public MenuItem createItem(String[] itemInfo) {
-        if (itemInfo[0].equals("coffee") || itemInfo[0].equals("espressoDrink")) {
-            String itemName = itemInfo[1];
-            String itemSize = itemInfo[2];
-            String itemCost = itemInfo[3];
-
-            if (itemInfo[0].equals("coffee")) {
-                return new CoffeeDrink(itemName, itemCost, itemSize);
+        for (MenuItem item : menuItems) {
+            if (item.getItemType().equals("Coffee")) {
+                coffeeMenu = coffeeMenu + item + "\n";
+            } else if (item.getItemType().equals("EspressoDrink")) {
+                espressoMenu = espressoMenu + item + "\n";
             } else {
-                return new EspressoDrink(itemName, itemCost, itemSize);
+                pastryMenu = pastryMenu + item + "\n";
             }
-        } else {
-            String itemName = itemInfo[1];
-            String itemCost = itemInfo[2];
-            return new Pastry(itemName, itemCost);
-        }
-    }
 
+        }
+        return coffeeMenu + espressoMenu + pastryMenu;
+    }
 }

@@ -6,7 +6,7 @@ public class CoffeeDrink extends MenuItem implements HaveVariousSizes {
     private String itemSize;
 
     public CoffeeDrink(String itemName, String itemPrice, String itemSize) {
-        super(itemName, itemPrice);
+        super(itemName, itemPrice, "Coffee");
         this.itemSize = itemSize;
     }
 
@@ -19,13 +19,8 @@ public class CoffeeDrink extends MenuItem implements HaveVariousSizes {
     }
 
     @Override
-    public BigDecimal getPrice() {
-        return this.getItemPrice();
-    }
-
-    @Override
     public String toString() {
-        return String.format("%s | %s | %.2f", this.getItemName(), this.getSize(), this.getPrice());
+        return String.format("%-13s | %-6s | %.2f", this.getItemName(), this.getSize(), this.getItemPrice());
     }
 
 }

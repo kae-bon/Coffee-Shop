@@ -1,10 +1,8 @@
-import java.math.BigDecimal;
-
 public class EspressoDrink extends MenuItem implements HaveVariousSizes {
 
     private String size;
     public EspressoDrink(String itemName, String itemPrice, String size) {
-        super(itemName, itemPrice);
+        super(itemName, itemPrice, "EspressoDrink");
         this.size = size;
     }
 
@@ -18,12 +16,7 @@ public class EspressoDrink extends MenuItem implements HaveVariousSizes {
     }
 
     @Override
-    public BigDecimal getPrice() {
-        return this.getItemPrice();
-    }
-
-    @Override
     public String toString() {
-        return String.format("%s | %s | %.2f", this.getItemName(), this.getSize(), this.getPrice());
+        return String.format("%-13s | %-4s | %.2f", this.getItemName(), this.getSize(), this.getItemPrice());
     }
 }
