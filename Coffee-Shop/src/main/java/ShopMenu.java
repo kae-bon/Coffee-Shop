@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class ShopMenu {
-    // WHAT THIS CLASS IS DOING: Creating a menu
+    // WHAT THIS CLASS IS DOING: Creating a shop menu
     private Inventory shopInventory = new Inventory();
 
     public String getShopMenu() {
@@ -27,5 +27,16 @@ public class ShopMenu {
 
         }
         return coffeeMenu + espressoMenu + pastryMenu;
+    }
+
+    private int getLongestItemName(List<MenuItem> menuItems) {
+        String itemName = menuItems.get(0).getItemName();
+        int lengthLongestString = itemName.length();
+        for (int i = 1; i < menuItems.size(); i++) {
+            if (lengthLongestString < menuItems.get(i).getItemType().length()) {
+                lengthLongestString = menuItems.get(i).getItemName().length();
+            }
+        }
+        return lengthLongestString;
     }
 }

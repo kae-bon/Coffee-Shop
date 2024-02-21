@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS baristas;
+
+-- create the customer table
+CREATE TABLE baristas (             
+	id SERIAL NOT NULL PRIMARY KEY, 
+	name VARCHAR(65) NOT NULL,
+	greeting VARCHAR(200) NOT NULL,
+	recommendation VARCHAR(50) NOT NULL
+);
+
+INSERT INTO baristas (name, greeting, recommendation)
+VALUES ('Neme', 'Howdy, folks, welcome to the CoffeeShop!', 'A latte with brown sugar maple syrup.'),
+		('Sylve', 'Good morning!', 'Red eye no cream, two sugars.'),
+		('Rhywyn', 'Hello, welcome in.', 'Straight espresso.');
+		
+SELECT *
+FROM baristas;
